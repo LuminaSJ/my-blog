@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Page</title>
+    <title>Seungwoo Cho's GitHub</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -17,28 +18,58 @@
         .container {
             background: white;
             padding: 30px;
-            max-width: 500px;
+            max-width: 600px;
             margin: auto;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
             border-radius: 12px;
-            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .container:hover {
-            transform: scale(1.02);
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         h1 {
             color: #444;
             font-weight: 600;
+            font-size: 24px;
+        }
+        .emoji {
+            font-size: 28px;
         }
         p {
             color: #666;
             font-size: 16px;
+            margin: 10px 0;
+        }
+        .highlight {
+            font-weight: 600;
+            color: #007bff;
+        }
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .btn-container {
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .btn-container.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 15px;
             padding: 12px 20px;
             background: #007bff;
             color: white;
@@ -70,12 +101,59 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My GitHub Page!</h1>
-        <p>This is a beautifully designed webpage hosted on GitHub Pages.</p>
-        <a href="https://github.com/LuminaSJ" class="btn" target="_blank">
-            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"> Visit My GitHub
-        </a>
+    <div class="container visible">
+        <h1 class="emoji">🛠️ Welcome to <span class="highlight">Seungwoo Cho</span>'s GitHub! 🚀</h1>
+        <p class="section">안녕하세요! 저는 조승우, 대구과학영재학교 38기 학생입니다.</p>
+        <p class="section">물리학과 알고리즘, 그리고 창의적인 문제 해결에 관심이 많아요.</p>
+
+        <h2 class="section">🎯 About Me</h2>
+        <p class="section">🏆 <b>Physics & Science Competitions</b></p>
+        <p class="section">한국 물리올림피아드 고급과정 <span class="highlight">금상 🏅</span></p>
+        <p class="section">전국과학창의력올림피아드 <span class="highlight">대통령상 🎖️</span></p>
+
+        <h2 class="section">💻 Competitive Programming</h2>
+        <p class="section">백준 <span class="highlight">Gold V</span> (주로 C++ 사용)</p>
+        <p class="section">사용 언어: C++, C, Python</p>
+        <p class="section">알고리즘 문제 해결과 최적화에 관심이 많아요!</p>
+
+        <h2 class="section">🔬 Interests</h2>
+        <p class="section">물리학 (특히 <span class="highlight">양자역학과 응용 물리</span>)</p>
+        <p class="section">알고리즘 & 데이터 구조</p>
+        <p class="section">인공지능과 머신러닝</p>
+
+        <h2 class="section">📌 Current Projects</h2>
+        <p class="section">🚀 알고리즘 문제 풀이 및 최적화 연구</p>
+        <p class="section">🔬 물리 시뮬레이션 개발</p>
+        <p class="section">🤖 Python을 활용한 머신러닝 기초 연구</p>
+
+        <h2 class="section">📫 Contact</h2>
+        <p class="section">✉️ Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+        <p class="section">🌎 GitHub: <a href="https://github.com/LuminaSJ" target="_blank">github.com/your-profile</a></p>
+
+        <div class="btn-container">
+            <a href="https://github.com/LuminaSJ" class="btn" target="_blank">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"> Visit My GitHub
+            </a>
+        </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.section').each(function(i) {
+                setTimeout(() => {
+                    $(this).addClass('show');
+                }, i * 300);
+            });
+
+            $(window).on('scroll', function() {
+                let scrollPos = $(window).scrollTop();
+                let containerHeight = $('.container').height();
+                
+                if (scrollPos > containerHeight * 0.7) {
+                    $('.btn-container').addClass('visible');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
