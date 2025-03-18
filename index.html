@@ -145,14 +145,17 @@
                 }, i * 300);
             });
 
-            $(window).on('scroll', function() {
+            function checkScroll() {
                 let scrollPos = $(window).scrollTop();
-                let containerHeight = $('.container').height();
-                
-                if (scrollPos > containerHeight * 0.7) {
+                let triggerPoint = window.innerHeight * 0.5; // 버튼이 나타나는 위치
+
+                if (scrollPos > triggerPoint) {
                     $('.btn-container').addClass('visible');
                 }
-            });
+            }
+
+            $(window).on('scroll', checkScroll);
+            checkScroll(); // 초기 상태에서도 버튼 체크
         });
     </script>
 </body>
